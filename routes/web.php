@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoggedInSessionManager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +23,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth'])->group(function () {
+    Route::get('logged-in-session', [LoggedInSessionManager::class, 'index'])->name('logged-in-session');
+    Route::post('logout-other-browser', [LoggedInSessionManager::class, 'logoutOtherBrowser'])->name('logout-other-browser');
+    Route::get('logout-single-browser/{device_id}', [LoggedInSessionManager::class, 'logoutDevice'])->name('logout-single-browser');
+});
+
