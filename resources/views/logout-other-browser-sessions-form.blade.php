@@ -46,7 +46,7 @@
                                                         <a href="#" class="flex items-center no-underline hover:underline">
                                                             <div class="ml-3 d-flex items-center">
                                                                 <span class="text-gray-900 whitespace-no-wrap m-0">
-                                                                    {{ $session->user_agent }}
+                                                                    {{ $session->agent->platform() ? $session->agent->platform() : 'Unknown' }} - {{ $session->agent->browser() ? $session->agent->browser() : 'Unknown' }}
                                                                 </span>
                                                             </div>
                                                         </a>
@@ -59,11 +59,11 @@
                                                     </td>
                                                     <td class="px-3 py-2 text-sm">
                                                         <span class="text-gray-900 whitespace-no-wrap">
-                                                            {{ Carbon\Carbon::parse($session->last_activity)->diffForHumans() }}
+                                                            {{ $session->last_active }}
                                                         </span>
                                                     </td>
                                                     <td class="text-center px-3 py-2 flex justify-center items-center on-hover-show">
-                                                        @if ($current_session_id == $session->id)
+                                                        @if ($session->is_current_device)
                                                             <button disabled class="bg-indigo-500 p-2 hover:bg-indigo-700 text-white rounded-full text-xs flex items-center justify-center mr-2 cursor-pointer">
                                                                 This Device
                                                             </button>
