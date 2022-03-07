@@ -63,11 +63,12 @@ class BrowserSessionManager extends Controller
     /**
      * Log out from other browser sessions.
      *
-     * @return void
+     * @return RedirectResponse
      */
     public function logoutOtherBrowserSessions()
     {
         $this->deleteOtherSessionRecords();
+        return back();
     }
 
 
