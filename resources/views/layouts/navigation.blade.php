@@ -18,8 +18,8 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('logged-in-session')" :active="request()->routeIs('logged-in-session')">
-                        {{ __('User Session') }}
+                    <x-nav-link :href="route('browser-session')" :active="request()->routeIs('browser-session')">
+                        {{ __('Browser Sessions') }}
                     </x-nav-link>
                 </div>
             </div>

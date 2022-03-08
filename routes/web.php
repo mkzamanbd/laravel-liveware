@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('logged-in-session', [BrowserSessionManager::class, 'getSessionsProperty'])->name('logged-in-session');
+    Route::get('browser-session', [BrowserSessionManager::class, 'getSessionsProperty'])->name('browser-session');
     Route::post('logout-other-browser', [BrowserSessionManager::class, 'logoutOtherBrowserSessions'])->name('logout-other-browser');
     Route::get('logout-single-browser/{device_id}', [BrowserSessionManager::class, 'logoutSingleSessionDevice'])->name('logout-single-browser');
 });
